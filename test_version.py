@@ -131,7 +131,7 @@ def plot_monthly_occupancy_rate(df):
     df.loc[:, 'month'] = df['checkin_date'].dt.to_period('M').dt.start_time
 
     # Filter cancelled reservations
-    filtered_data = df[df['status'] != 'cancelled']
+    df = df[df['status'] != 'cancelled']
 
     # Calculate occupancy for each property each month
     monthly_occupancy = df.groupby(['month', 'property_name']).apply(
@@ -235,7 +235,7 @@ def main():
         fig6 = plot_monthly_occupancy_rate(filtered_df)
         st.plotly_chart(fig6)
         fig7 = plot_monthly_adr_line(filtered_df)
-        st.plotly_chart(fig6)       
+        st.plotly_chart(fig7)       
 
     else:
         st.write("No data loaded.")
